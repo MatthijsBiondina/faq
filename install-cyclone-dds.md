@@ -93,3 +93,149 @@ This command installs Cyclone DDS to the directory specified earlier.
 ### Conclusion
 
 You now have all the prerequisites installed on your Raspberry Pi for developing with Eclipse Cyclone DDS. You can begin setting up your development environment, compiling, and running DDS applications. If you encounter issues, consider verifying each component's installation, checking log files, or consulting documentation specific to each tool.
+
+# Comprehensive Manual: Using Cyclone DDS with Python Across Multiple Devices
+
+This manual provides a step-by-step guide to using Eclipse Cyclone DDS for developing distributed applications in Python, specifically tailored for setups involving multiple devices (e.g., a network of Raspberry Pis or different computers within a lab environment).
+
+## Section 1: Introduction to DDS and Cyclone DDS
+
+### What is DDS?
+
+The Data Distribution Service (DDS) is a middleware protocol and API standard for data-centric connectivity. It provides a scalable, flexible solution for real-time machine-to-machine communication. DDS is widely used in systems requiring high reliability, complex data distribution, and real-time performance.
+
+### Why Cyclone DDS?
+
+Eclipse Cyclone DDS is an open-source implementation of the DDS specification that provides a robust, scalable, and efficient backend for distributed systems. It is particularly favored in the robotics and IoT domains due to its performance metrics and ease of integration with technologies like ROS 2.
+
+## Section 2: Setting Up Cyclone DDS
+
+Follow the installation instructions outlined previously to setup Cyclone DDS on each device you intend to use. Ensure each device has Python 3 and the `cyclonedds-python` package installed. Here’s how to install the Python package:
+
+```bash
+pip3 install cyclonedds-python
+```
+
+## Section 3: Basic Concepts of Cyclone DDS
+
+### Domain Participants
+
+A DomainParticipant creates an entry point to the DDS network and acts as a factory for creating Topics, Publishers, and Subscribers.
+
+### Topics
+
+A Topic is a category under which data is published and subscribed. Think of it as a news channel that conveys specific types of news.
+
+### Data Writers and Readers
+
+- **DataWriter**: Publishes data under a topic.
+- **DataReader**: Subscribes to a topic to receive its data.
+
+### Quality of Service (QoS)
+
+QoS settings allow fine-grained control over various aspects of data distribution, such as reliability and latency.
+
+## Section 4: A Simple Example
+
+### Python Script for a Publisher
+
+Here is a basic publisher script that sends a "Hello" message. Run this on the first device (Publisher Device).
+
+```python
+from dataclasses import dataclass
+from cyclonedds.domain import DomainParticipant
+from cyclonedds.pub import Publisher, DataWriter
+from cyclonedds.topic import Topic
+from cyclonedds.core import Qos, Policy
+from time import sleep
+
+@dataclass
+class HelloMessage:
+    index: int
+    message: str
+
+# Initialize a DomainParticipant
+participant = DomainParticipant()
+
+# Create a Topic
+topic = Topic(participant, "HelloTopic", HelloMessage)
+
+# Initialize a Publisher
+publisher = Publisher(participant)
+
+# Initialize a DataWriter with QoS settings for reliability
+data_writer = DataWriter(publisher, topic, qos=Qos(Policy.Reliability.Reliable()))
+
+# Send data continuously
+count = 0
+while True:
+    msg = HelloMessage(index=count, message="Hello from Publisher!")
+    data_writer.write(msg)
+    print(f"Sent: {msg}")
+    count += 1
+    sleep(1)  # Send a message every second
+```
+
+### Python Script for a Subscriber
+
+Run this on the second device (Subscriber Device).
+
+```python
+from dataclasses import dataclass
+from cyclonedds.domain import DomainParticipant
+from cyclonedds.sub import Subscriber, DataReader
+from cyclonedds.topic import Topic
+from cyclonedds.core import Qos, Policy
+
+@dataclass
+class HelloMessage:
+    index: int
+    message: str
+
+# Initialize a DomainParticipant
+participant = DomainParticipant()
+
+# Create a Topic
+topic = Topic(participant, "HelloTopic", HelloMessage)
+
+# Initialize a Subscriber
+subscriber = Subscriber(participant)
+
+# Initialize a DataReader with QoS settings for reliability
+data_reader = DataReader(subscriber, topic, qos=Qos(Policy.Reliability.Reliable()))
+
+# Read data continuously
+while True:
+    for data in data_reader.take():
+        print(f"Received: {data}")
+```
+
+## Section 5: Running the Example
+
+### Setup Network
+
+Ensure all devices are connected to the same network. Configure firewalls to allow UDP traffic which DDS uses for data transmission.
+
+### Execute the Programs
+
+1. **On the Publisher Device**: Run the publisher script.
+2. **On the Subscriber Device**: Run the subscriber script.
+
+Data published by the publisher device should appear on the subscriber device's console, indicating that the setup is correct.
+
+## Section 6: Advanced Configuration
+
+Explore advanced QoS policies like Deadline, Lifespan, or Latency Budget to fine-tune the performance according to your network environment and application requirements.
+
+## Section 7: Scaling Up
+
+To scale this setup:
+- Introduce more publishers or subscribers.
+- Implement different topics for categorized data streams.
+- Utilize hierarchical domain structures for large-scale deployments.
+
+## Conclusion
+
+This manual provides the necessary steps and example code to get started with Cyclone DDS using Python across multiple devices
+
+. By following these guidelines, developers can build robust, distributed applications tailored to specific needs of real-time data distribution.
