@@ -13,6 +13,6 @@ This guide provides detailed instructions for turning an existing directory on a
 
 This manual provides detailed instructions on how to install and configure `fzf` (Fuzzy Finder) on Ubuntu using the Git cloning method for enhanced command-line productivity. It covers the initial setup, including the installation of Git, cloning the `fzf` repository, and running the installation script. Additionally, the guide offers practical usage examples and advanced configuration tips such as setting up key bindings and integrating `fzf` with shell commands for efficient file and directory searching, as well as command history retrieval.
 
-### [Getting Started with Eclipse Cyclone DDS on Ubuntu 20.04](getting-started-cyclone-dds.md)
+### [Getting Started with Eclipse Cyclone DDS on Ubuntu 20.04](eclipse-cyclone-dds.md)
 
 This manual offers a straightforward guide to installing Eclipse Cyclone DDS, an open-source implementation of the Data Distribution Service (DDS) specifications, which facilitates high-performance, scalable, and real-time data distribution for distributed systems.
