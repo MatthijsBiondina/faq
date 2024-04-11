@@ -1,3 +1,15 @@
+# Eclipse Cyclone DDS
+
+### What is DDS?
+
+The Data Distribution Service (DDS) is a middleware protocol and API standard for data-centric connectivity. It provides a scalable, flexible solution for real-time machine-to-machine communication. DDS is widely used in systems requiring high reliability, complex data distribution, and real-time performance.
+
+### Why Cyclone DDS?
+
+Eclipse Cyclone DDS is an open-source implementation of the DDS specification that provides a robust, scalable, and efficient backend for distributed systems. It is particularly favored in the robotics and IoT domains due to its performance metrics and ease of integration with technologies like ROS 2.
+
+## Installation
+
 Setting up Eclipse Cyclone DDS on a Raspberry Pi running Ubuntu 20.04 involves ensuring that you have all the necessary prerequisites installed. Below are the detailed steps to check and install these prerequisites:
 
 ### 1. Update Your System
@@ -98,17 +110,8 @@ You now have all the prerequisites installed on your Raspberry Pi for developing
 
 This manual provides a step-by-step guide to using Eclipse Cyclone DDS for developing distributed applications in Python, specifically tailored for setups involving multiple devices (e.g., a network of Raspberry Pis or different computers within a lab environment).
 
-## Section 1: Introduction to DDS and Cyclone DDS
 
-### What is DDS?
-
-The Data Distribution Service (DDS) is a middleware protocol and API standard for data-centric connectivity. It provides a scalable, flexible solution for real-time machine-to-machine communication. DDS is widely used in systems requiring high reliability, complex data distribution, and real-time performance.
-
-### Why Cyclone DDS?
-
-Eclipse Cyclone DDS is an open-source implementation of the DDS specification that provides a robust, scalable, and efficient backend for distributed systems. It is particularly favored in the robotics and IoT domains due to its performance metrics and ease of integration with technologies like ROS 2.
-
-## Section 2: Setting Up Cyclone DDS
+## 1: Setting Up Cyclone DDS
 
 Follow the installation instructions outlined previously to setup Cyclone DDS on each device you intend to use. Ensure each device has Python 3 and the `cyclonedds-python` package installed. Here’s how to install the Python package:
 
@@ -116,7 +119,7 @@ Follow the installation instructions outlined previously to setup Cyclone DDS on
 pip3 install cyclonedds-python
 ```
 
-## Section 3: Basic Concepts of Cyclone DDS
+## 2: Basic Concepts of Cyclone DDS
 
 ### Domain Participants
 
@@ -135,7 +138,7 @@ A Topic is a category under which data is published and subscribed. Think of it 
 
 QoS settings allow fine-grained control over various aspects of data distribution, such as reliability and latency.
 
-## Section 4: A Simple Example
+## 3: A Simple Example
 
 ### Python Script for a Publisher
 
@@ -210,7 +213,7 @@ while True:
         print(f"Received: {data}")
 ```
 
-## Section 5: Running the Example
+## 4: Running the Example
 
 ### Setup Network
 
@@ -223,11 +226,11 @@ Ensure all devices are connected to the same network. Configure firewalls to all
 
 Data published by the publisher device should appear on the subscriber device's console, indicating that the setup is correct.
 
-## Section 6: Advanced Configuration
+## 5: Advanced Configuration
 
 Explore advanced QoS policies like Deadline, Lifespan, or Latency Budget to fine-tune the performance according to your network environment and application requirements.
 
-## Section 7: Scaling Up
+## 6: Scaling Up
 
 To scale this setup:
 - Introduce more publishers or subscribers.
