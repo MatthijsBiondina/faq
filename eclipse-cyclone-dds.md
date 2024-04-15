@@ -113,10 +113,11 @@ This manual provides a step-by-step guide to using Eclipse Cyclone DDS for devel
 
 ## 1: Setting Up Cyclone DDS
 
-Follow the installation instructions outlined previously to setup Cyclone DDS on each device you intend to use. Ensure each device has Python 3 and the `cyclonedds-python` package installed. Here’s how to install the Python package:
+Follow the installation instructions outlined previously to setup Cyclone DDS on each device you intend to use. Ensure each device has Python 3 and the `cyclonedds` package installed. Here’s how to install the Python package:
 
 ```bash
-pip3 install cyclonedds-python
+export CYCLONEDDS_HOME=/usr/local
+pip3 install git+https://github.com/eclipse-cyclonedds/cyclonedds-python
 ```
 
 ## 2: Basic Concepts of Cyclone DDS
@@ -301,14 +302,6 @@ sudo make install
 
 ```bash
 source ~/iceoryx/build/iceoryx_env_setup.bash
-```
-
-#### Install Cyclone DDS Python Bindings
-
-Ensure the Python bindings for Cyclone DDS are installed, which support Iceoryx:
-
-```bash
-pip install cyclonedds-python
 ```
 
 ## 3: Configuring Cyclone DDS for Shared Memory
