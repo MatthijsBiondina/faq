@@ -16,3 +16,7 @@ This manual provides detailed instructions on how to install and configure `fzf`
 ### [Getting Started with Eclipse Cyclone DDS on Ubuntu 20.04](eclipse-cyclone-dds.md)
 
 This manual offers a straightforward guide to installing Eclipse Cyclone DDS, an open-source implementation of the Data Distribution Service (DDS) specifications, which facilitates high-performance, scalable, and real-time data distribution for distributed systems.
+
+### [Setting Up Ubuntu 20.04 Raspberry Edition on Your Raspberry Pi](flash-and-connect-pi.md)
+
+This manual provides detailed instructions for installing Ubuntu 20.04 Raspberry Edition on your Raspberry Pi. It not only guides you through the initial setup of the operating system using the Raspberry Pi Imager but also includes step-by-step instructions for connecting the Raspberry Pi to a Wi-Fi network post-installation.
