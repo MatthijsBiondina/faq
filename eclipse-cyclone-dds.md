@@ -44,10 +44,6 @@ sudo apt install openssl libssl-dev -y
 - **openssl**: The basic binary for running OpenSSL.
 - **libssl-dev**: Development libraries for compiling applications that use OpenSSL.
 
-### 4. Install Eclipse Iceoryx (Optional)
-
-Eclipse Iceoryx provides mechanisms for zero-copy inter-process-communication. It is optional and not required to run Cyclone DDS. However, if desired, you might need to build it from source as packages may not be readily available for Raspberry Pi. Check the [Eclipse Iceoryx GitHub](https://github.com/eclipse-iceoryx/iceoryx) page for building instructions.
-
 ### 5. Install Bison (Optional)
 
 Bison is a general-purpose parser generator. If you plan to modify or develop parsers within Cyclone DDS, install Bison with:
