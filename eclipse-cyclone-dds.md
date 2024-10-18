@@ -1,3 +1,43 @@
+# Eclipse Cyclone DDS Documentation
+
+### Index
+1. [What is DDS?](#what-is-dds)
+2. [Why Cyclone DDS?](#why-cyclone-dds)
+3. [Installation](#installation)
+   - [Update Your System](#1-update-your-system)
+   - [Install C Compiler and Related Tools](#2-install-c-compiler-and-related-tools)
+   - [Install OpenSSL (Optional)](#3-install-openssl-optional)
+   - [Skipping Iceoryx Installation for Now](#4-skipping-iceoryx-installation-for-now)
+   - [Install Bison (Optional)](#5-install-bison-optional)
+   - [Check Installation of Prerequisites](#6-check-installation-of-prerequisites)
+   - [Clone Cyclone DDS Repository](#7-clone-cyclone-dds-repository)
+   - [Proceed with Cyclone DDS Installation](#8-proceed-with-cyclone-dds-installation)
+   - [Install Cyclone DDS](#9-install-cyclone-dds)
+4. [Using Cyclone DDS with Python Across Multiple Devices](#using-cyclone-dds-with-python-across-multiple-devices)
+   - [Setting Up Cyclone DDS](#1-setting-up-cyclone-dds)
+   - [Basic Concepts of Cyclone DDS](#2-basic-concepts-of-cyclone-dds)
+   - [A Simple Example](#3-a-simple-example)
+   - [Running the Example](#4-running-the-example)
+   - [Advanced Configuration](#5-advanced-configuration)
+   - [Scaling Up](#6-scaling-up)
+5. [Using Shared Memory Transport in Cyclone DDS with Python](#using-shared-memory-transport-in-cyclone-dds-with-python)
+   - [Introduction to Shared Memory Transport](#1-introduction-to-shared-memory-transport)
+   - [Setting Up the Environment](#2-setting-up-the-environment)
+   - [Configuring Cyclone DDS for Shared Memory](#3-configuring-cyclone-dds-for-shared-memory)
+   - [Implementing Shared Memory Transport in Python](#4-implementing-shared-memory-transport-in-python)
+   - [Running Your Application](#5-running-your-application)
+6. [Implementing Services and Actions Using Cyclone DDS](#implementing-services-and-actions-using-cyclone-dds)
+   - [Introduction to Services and Actions](#1-introduction-to-services-and-actions)
+   - [Implementing Services](#3-implementing-services)
+   - [Implementing Actions](#4-implementing-actions)
+7. [Advanced QoS Settings for Cyclone DDS](#advanced-qos-settings-for-cyclone-dds)
+   - [Introduction to QoS in DDS](#1-introduction-to-qos-in-dds)
+   - [Key QoS Policies](#2-key-qos-policies)
+   - [Combining Multiple QoS Policies](#3-combining-multiple-qos-policies)
+8. [Setting Up Cyclone DDS for PyCharm](#5-setting-up-cyclone-dds-for-pycharm) 
+
+---
+
 # Eclipse Cyclone DDS
 
 ### What is DDS?
@@ -43,6 +83,10 @@ sudo apt install openssl libssl-dev -y
 
 - **openssl**: The basic binary for running OpenSSL.
 - **libssl-dev**: Development libraries for compiling applications that use OpenSSL.
+
+### 4. Skipping Iceoryx Installation for Now
+
+Although the official instructions suggest installing Iceoryx during this step for shared memory transport, this can cause build errors in some cases. It’s recommended to skip installing Iceoryx at this point and complete the Cyclone DDS installation first. You can revisit Iceoryx installation after Cyclone DDS is set up and working.
 
 ### 5. Install Bison (Optional)
 
@@ -714,7 +758,45 @@ data_reader = DataReader(subscriber, topic, qos=combined_qos)
 ## 4: Practical Application Example
 
 Consider a scenario where sensor data is being sent from multiple IoT devices and must be processed by a central system. The data is critical, so we need to ensure it's reliably transmitted, processed within specific time frames, and the history is adequately maintained for late analysis.
+# Eclipse Cyclone DDS Documentation
 
+### Index
+1. [What is DDS?](#what-is-dds)
+2. [Why Cyclone DDS?](#why-cyclone-dds)
+3. [Installation](#installation)
+   - [Update Your System](#1-update-your-system)
+   - [Install C Compiler and Related Tools](#2-install-c-compiler-and-related-tools)
+   - [Install OpenSSL (Optional)](#3-install-openssl-optional)
+   - [Skipping Iceoryx Installation for Now](#4-skipping-iceoryx-installation-for-now)
+   - [Install Bison (Optional)](#5-install-bison-optional)
+   - [Check Installation of Prerequisites](#6-check-installation-of-prerequisites)
+   - [Clone Cyclone DDS Repository](#7-clone-cyclone-dds-repository)
+   - [Proceed with Cyclone DDS Installation](#8-proceed-with-cyclone-dds-installation)
+   - [Install Cyclone DDS](#9-install-cyclone-dds)
+4. [Using Cyclone DDS with Python Across Multiple Devices](#using-cyclone-dds-with-python-across-multiple-devices)
+   - [Setting Up Cyclone DDS](#1-setting-up-cyclone-dds)
+   - [Basic Concepts of Cyclone DDS](#2-basic-concepts-of-cyclone-dds)
+   - [A Simple Example](#3-a-simple-example)
+   - [Running the Example](#4-running-the-example)
+   - [Advanced Configuration](#5-advanced-configuration)
+   - [Scaling Up](#6-scaling-up)
+5. [Using Shared Memory Transport in Cyclone DDS with Python](#using-shared-memory-transport-in-cyclone-dds-with-python)
+   - [Introduction to Shared Memory Transport](#1-introduction-to-shared-memory-transport)
+   - [Setting Up the Environment](#2-setting-up-the-environment)
+   - [Configuring Cyclone DDS for Shared Memory](#3-configuring-cyclone-dds-for-shared-memory)
+   - [Implementing Shared Memory Transport in Python](#4-implementing-shared-memory-transport-in-python)
+   - [Running Your Application](#5-running-your-application)
+6. [Implementing Services and Actions Using Cyclone DDS](#implementing-services-and-actions-using-cyclone-dds)
+   - [Introduction to Services and Actions](#1-introduction-to-services-and-actions)
+   - [Implementing Services](#3-implementing-services)
+   - [Implementing Actions](#4-implementing-actions)
+7. [Advanced QoS Settings for Cyclone DDS](#advanced-qos-settings-for-cyclone-dds)
+   - [Introduction to QoS in DDS](#1-introduction-to-qos-in-dds)
+   - [Key QoS Policies](#2-key-qos-policies)
+   - [Combining Multiple QoS Policies](#3-combining-multiple-qos-policies)
+8. [Setting Up Cyclone DDS for PyCharm](#5-setting-up-cyclone-dds-for-pycharm) 
+
+---
 ### Device (Publisher) Side Script:
 
 ```python
@@ -747,8 +829,23 @@ while True:
         process_sensor_data(data)
 ```
 
-## 5: Conclusion
+## 5: Setting Up Cyclone DDS for PyCharm
 
-Understanding and effectively utilizing advanced QoS policies in Cyclone DDS can significantly enhance the performance and reliability of distributed systems, especially in environments that demand stringent real-time characteristics. This manual should serve as a solid foundation for configuring these settings in your applications. 
+PyCharm's debugger doesn't automatically have access to environment variables, so you need to create a `.env` file to define them explicitly. Follow these steps to configure your Cyclone DDS setup for PyCharm:
 
-By carefully selecting the right combination of QoS policies, you can tailor the data distribution characteristics precisely to the needs of your application, ensuring efficient and reliable data handling.
+1. **Create a `.env` file**: This file will contain the necessary environment variables for Cyclone DDS. Here's an example of what your `.env` file should look like:
+
+   ```bash
+   CYCLONEDDS_HOME=/usr/local
+   CYCLONEDDS_URI="path/to/cyclonedds.xml"
+   ```
+
+   Replace `path/to/cyclonedds.xml` with the actual path to your Cyclone DDS configuration XML file.
+
+2. **Configure PyCharm to use the `.env` file**:
+   - Open **Run/Debug Configurations** in PyCharm.
+   - Select your configuration or create a new one for your Python project.
+   - Under **Environment** settings, locate **Environment variables** and click the folder icon next to it.
+   - In the pop-up, select **Load environment variables from file** and choose the `.env` file you created.
+   
+This setup ensures that your PyCharm environment has access to the necessary Cyclone DDS variables for running and debugging your project.
