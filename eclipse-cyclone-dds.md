@@ -126,7 +126,7 @@ Create a build directory and proceed with the configuration:
 ```bash
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DENABLE_ICEORYX=OFF ..
 cmake --build .
 ```
 
