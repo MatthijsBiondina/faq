@@ -76,6 +76,8 @@ Initialize the directory as a Git repository:
 git init
 ```
 
+Add .gitignore now!
+
 ## Step 6: Prepare and Commit Your Files
 
 Add all files to the staging area:
