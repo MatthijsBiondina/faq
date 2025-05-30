@@ -76,7 +76,28 @@ Initialize the directory as a Git repository:
 git init
 ```
 
-Add .gitignore now!
+Example .gitignore
+
+```
+# Exclude a specific file
+config.txt
+
+# Exclude a specific folder
+node_modules/
+
+# Exclude all contents of a folder but keep the folder
+logs/*
+!logs/.gitkeep
+
+# Exclude all files with specific extension
+*.log
+
+# Exclude files in any subdirectory
+**/*.tmp
+
+# Exclude folder anywhere in project
+**/cache/
+```
 
 ## Step 6: Prepare and Commit Your Files
 
